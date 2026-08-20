@@ -1,0 +1,20 @@
+---
+import { site } from '../content/site';
+---
+
+<section class="hero" id="inicio" aria-labelledby="hero-title">
+  <div class="hero__light hero__light--teal"></div>
+  <div class="hero__light hero__light--ochre"></div>
+  <div class="hero__grain" aria-hidden="true"></div>
+  <div class="hero__route" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="hero__content shell">
+    <p class="eyebrow"><span></span>{site.hero.eyebrow}</p>
+    <h1 id="hero-title">{site.hero.title.map((line) => <span>{line}</span>)}</h1>
+    <p class="hero__role">{site.band.genre}</p>
+    <div class="hero__actions">
+      <a class="button button--primary" href={site.hero.primaryAction.href}>{site.hero.primaryAction.label} <span>↘</span></a>
+      <a class="button button--ghost" href={site.hero.secondaryAction.href}>{site.hero.secondaryAction.label} <span>↘</span></a>
+    </div>
+  </div>
+  <a class="hero__scroll" href="#bio">Deslizá para entrar <span>↓</span></a>
+</section>

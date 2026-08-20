@@ -1,0 +1,35 @@
+---
+import { site } from '../content/site';
+import SectionHeading from './SectionHeading.astro';
+---
+
+<section class="section music" id="musica" aria-labelledby="music-title">
+  <div class="shell">
+    <SectionHeading id="music-title" {...site.sections.music} />
+    <div class="release-grid">
+      {site.releases.map((release) => (
+        <article class:list={['release-card', { 'release-card--featured': release.featured }]}>
+          <div class="release-card__art" aria-label={`Placeholder de arte para ${release.title}`} role="img">
+            <span>{release.art}</span>
+            <small>{release.status}</small>
+          </div>
+          <div class="release-card__body">
+            <p class="release-card__format">{release.format}</p>
+            <h3>{release.title}</h3>
+            <p>{release.detail}</p>
+          </div>
+          {release.featured && (
+            <div class="release-card__video">
+              <!-- TODO: Agregar la URL real del embed de YouTube en src/content/site.ts. -->
+              {site.media.youtubeUrl ? (
+                <iframe src={site.media.youtubeUrl} title={site.media.youtubeTitle} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              ) : (
+                <p>Video de “Muchos Colores” · próximamente</p>
+              )}
+            </div>
+          )}
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

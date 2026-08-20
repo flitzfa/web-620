@@ -1,0 +1,25 @@
+---
+import { site } from '../content/site';
+import SectionHeading from './SectionHeading.astro';
+---
+
+<section class="section members" id="integrantes" aria-labelledby="members-title">
+  <div class="shell">
+    <SectionHeading id="members-title" {...site.sections.members} />
+    <div class="member-grid">
+      {site.members.map((member, index) => (
+        <article class="member-card">
+          <div class={`member-card__portrait member-card__portrait--${index + 1}`} aria-label={`Placeholder de foto de ${member.name}`} role="img">
+            <span>{member.initials}</span>
+            <small>Foto pendiente</small>
+          </div>
+          <div class="member-card__body">
+            <p class="member-card__role">{member.role}</p>
+            <h3>{member.name}</h3>
+            <p>{member.detail}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

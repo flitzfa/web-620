@@ -1,0 +1,22 @@
+---
+import { site } from '../content/site';
+import SectionHeading from './SectionHeading.astro';
+---
+
+<section class="section shows" id="fechas" aria-labelledby="shows-title">
+  <div class="shell">
+    <SectionHeading id="shows-title" {...site.sections.shows} />
+    <div class="show-list">
+      {site.shows.map((show) => (
+        <article class:list={['show-card', { 'show-card--upcoming': show.state === 'Próxima' }]}>
+          <p class="show-card__state">{show.state}</p>
+          <div>
+            <h3>{show.venue}</h3>
+            <p>{show.city}</p>
+          </div>
+          <p class="show-card__date">{show.date}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

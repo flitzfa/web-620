@@ -1,0 +1,19 @@
+---
+import { site } from '../content/site';
+---
+
+<footer class="contact" id="contacto">
+  <div class="contact__light" aria-hidden="true"></div>
+  <div class="shell contact__inner">
+    <p class="eyebrow"><span></span>{site.contact.eyebrow}</p>
+    <h2>{site.contact.title[0]}<br /><em>{site.contact.title[1]}</em></h2>
+    <!-- TODO: Reemplazar el correo y las redes en src/content/site.ts. -->
+    <a class="contact__mail" href={`mailto:${site.band.email}`}>{site.band.email} <span>↗</span></a>
+    <div class="contact__bottom">
+      <p>© {new Date().getFullYear()} {site.band.name}</p>
+      <nav aria-label="Redes sociales">
+        {site.socials.map((social) => <a href={social.href} target="_blank" rel="noreferrer">{social.label}</a>)}
+      </nav>
+    </div>
+  </div>
+</footer>

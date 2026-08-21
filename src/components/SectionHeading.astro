@@ -11,7 +11,7 @@ const { id, number, eyebrow, title, intro } = Astro.props;
 ---
 
 <header class="section-heading">
-  <div class="section-heading__meta"><span>{number}</span><span>{eyebrow}</span></div>
+  <div class="section-heading__meta"><span class="section-heading__number">{number}</span><span class="section-heading__eyebrow">{eyebrow}</span></div>
   <h2 id={id}>{title}</h2>
   {intro && <p>{intro}</p>}
 </header>

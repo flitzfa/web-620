@@ -55,7 +55,7 @@ Primeros ensayos en el verano de 2025; debut en marzo en un ciclo de Palermo. Ho
     { date: 'Marzo 2025', venue: 'Ciclo musical (Debut)', city: 'Palermo · Buenos Aires', state: 'Pasada' as 'Pasada' | 'Próxima' },
     { date: 'Show realizado', venue: 'Vivero Club (con Javier Malosetti)', city: 'El Palomar · Buenos Aires', state: 'Pasada' as 'Pasada' | 'Próxima' },
     { date: 'Show realizado', venue: 'Festival Blackfest · Tanque Cultural', city: 'Liniers · Buenos Aires', state: 'Pasada' as 'Pasada' | 'Próxima' },
-    { date: 'Show realizado', venue: '“Colectivísimo” · Jazzvoyeur', city: 'Recoleta · Buenos Aires', state: 'Pasada' as 'Pasada' | 'Próxima' },
+    { date: 'Show realizado', venue: '"Colectivíssimo" · Jazzvoyeur', city: 'Recoleta · Buenos Aires', state: 'Pasada' as 'Pasada' | 'Próxima' },
   ],
   gallery: [
     { label: 'En vivo · 01', shape: 'wide' },

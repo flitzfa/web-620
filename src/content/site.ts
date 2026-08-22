@@ -1,3 +1,13 @@
+import type { ImageMetadata } from 'astro';
+import groupPhoto from '../assets/images/620-3juntos.jpg';
+import nicoGalleryPhoto from '../assets/images/620-nicogaleria1.jpg';
+import nicoPhoto from '../assets/images/620-nico.jpg';
+import sergioGalleryPhoto from '../assets/images/620-sergiogaleria1.jpg';
+import sergioPhoto from '../assets/images/620-sergio.jpg';
+import walterGalleryPhoto from '../assets/images/620-waltergaleria1.jpg';
+import walterPhoto from '../assets/images/620-walter.jpg';
+import walterSergioGalleryPhoto from '../assets/images/620-waltersergiogaleria.jpg';
+
 export type Show = {
   date: string;
   venue: string;
@@ -21,14 +31,15 @@ export type Member = {
   role: string;
   detail: string;
   initials: string;
-  photo?: string;
+  photo?: ImageMetadata;
 };
 
 export type GalleryImage = {
   label: string;
-  shape: 'wide' | 'tall' | 'square';
-  photo?: string;
+  shape: 'wide' | 'tall' | 'square' | 'feature';
+  photo?: ImageMetadata;
   alt?: string;
+  focus?: string;
 };
 
 /**
@@ -76,17 +87,17 @@ const releases: readonly Release[] = [
 ];
 
 const members: readonly Member[] = [
-  { name: 'Walter Zelaya', role: 'Guitarra', detail: 'Guitarra', initials: 'WZ', photo: '/images/620-walter.jpg' },
-  { name: 'Nico Fernández', role: 'Bajo', detail: 'Bajo', initials: 'NF', photo: '/images/620-nico.jpg' },
-  { name: 'Sergio Morán', role: 'Batería', detail: 'Batería', initials: 'SM', photo: '/images/620-sergio.jpg' },
+  { name: 'Walter Zelaya', role: 'Guitarra', detail: 'Guitarra', initials: 'WZ', photo: walterPhoto },
+  { name: 'Nico Fernández', role: 'Bajo', detail: 'Bajo', initials: 'NF', photo: nicoPhoto },
+  { name: 'Sergio Morán', role: 'Batería', detail: 'Batería', initials: 'SM', photo: sergioPhoto },
 ];
 
 const gallery: readonly GalleryImage[] = [
-  { label: '620 Trío · retrato grupal', shape: 'wide', photo: '/images/620-3juntos.jpg', alt: 'Los integrantes de 620 Trío reunidos' },
-  { label: 'En vivo · 02', shape: 'tall' },
-  { label: 'Estudio · 01', shape: 'square' },
-  { label: 'En vivo · 03', shape: 'wide' },
-  { label: 'En vivo · 04', shape: 'square' },
+  { label: '620 Trío · retrato grupal', shape: 'feature', photo: groupPhoto, alt: 'Los integrantes de 620 Trío reunidos', focus: 'center' },
+  { label: 'Nico Fernández · bajo', shape: 'square', photo: nicoGalleryPhoto, alt: 'Nico Fernández tocando el bajo durante una sesión', focus: '70% center' },
+  { label: 'Walter Zelaya · guitarra', shape: 'square', photo: walterGalleryPhoto, alt: 'Walter Zelaya durante una sesión de grabación', focus: '80% center' },
+  { label: 'Walter Zelaya y Sergio Morán', shape: 'square', photo: walterSergioGalleryPhoto, alt: 'Walter Zelaya y Sergio Morán durante una sesión', focus: 'center' },
+  { label: 'Sergio Morán · batería', shape: 'square', photo: sergioGalleryPhoto, alt: 'Sergio Morán tocando la batería durante una sesión', focus: 'center' },
 ];
 
 export const site = {

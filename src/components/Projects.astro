@@ -1,5 +1,6 @@
 ---
 import { site } from '../content/site';
+import { Image } from 'astro:assets';
 import SectionHeading from './SectionHeading.astro';
 ---
 
@@ -11,7 +12,7 @@ import SectionHeading from './SectionHeading.astro';
         <article class="member-card">
           {member.photo ? (
             <div class="member-card__portrait member-card__portrait--photo">
-              <img src={member.photo} alt={`${member.name}, ${member.role.toLowerCase()} de 620 Trío`} loading="lazy" />
+              <Image src={member.photo} alt={`${member.name}, ${member.role.toLowerCase()} de 620 Trío`} width={800} widths={[400, 800]} sizes="(min-width: 700px) 33vw, 100vw" format="webp" loading="lazy" />
             </div>
           ) : (
             <div class={`member-card__portrait member-card__portrait--${index + 1}`} aria-label={`Placeholder de foto de ${member.name}`} role="img">

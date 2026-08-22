@@ -1,17 +1,17 @@
 ---
 import { site } from '../content/site';
+import { Image } from 'astro:assets';
 import SectionHeading from './SectionHeading.astro';
 ---
 
 <section class="section gallery" id="galeria" aria-labelledby="gallery-title">
   <div class="shell">
     <SectionHeading id="gallery-title" {...site.sections.gallery} />
-    <!-- TODO: Reemplazar los placeholders restantes por fotos de shows en alta resolución. -->
     <div class="gallery-grid">
       {site.gallery.map((image, index) => (
         <figure class:list={['gallery-item', `gallery-item--${image.shape}`]}>
           {image.photo ? (
-            <img class="gallery-item__image" src={image.photo} alt={image.alt ?? image.label} loading="lazy" />
+            <Image class="gallery-item__image" src={image.photo} alt={image.alt ?? image.label} width={1600} widths={[800, 1600]} sizes="(min-width: 700px) 66vw, 100vw" format="webp" loading="lazy" style={image.focus ? `object-position: ${image.focus};` : ''} />
           ) : (
             <div class={`gallery-item__placeholder gallery-item__placeholder--${index + 1}`} role="img" aria-label={`Placeholder: ${image.label}`}>
               <span class="gallery-item__lights" aria-hidden="true"></span>

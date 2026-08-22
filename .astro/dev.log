@@ -2,6 +2,12 @@
 {"message":"Generated 2ms","label":"types","level":"info"}
 {"message":"connected.","label":"vite","level":"info"}
 {"message":"Re-optimizing dependencies because vite config has changed","label":"vite","level":"info"}
-{"message":" astro  v7.2.4 ready in 2197 ms\n┃ Local    http://127.0.0.1:4321/","label":"SKIP_FORMAT","level":"info"}
+{"message":" astro  v7.2.4 ready in 2152 ms\n┃ Local    http://127.0.0.1:4321/","label":"SKIP_FORMAT","level":"info"}
 {"message":"watching for file changes...","label":null,"level":"info"}
-{"message":"[200] / 40ms","label":null,"level":"info"}
+{"message":"[200] / 45ms","label":null,"level":"info"}
+{"message":"[200] /_image 867ms","label":null,"level":"info"}
+{"message":"[200] /_image 959ms","label":null,"level":"info"}
+{"message":"[200] /_image 1080ms","label":null,"level":"info"}
+{"message":"[200] /_image 1109ms","label":null,"level":"info"}
+{"message":"[200] / 75ms","label":null,"level":"info"}
+{"message":"[200] /_image 834ms","label":null,"level":"info"}

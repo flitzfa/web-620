@@ -6,7 +6,32 @@ import { site } from '../content/site';
   <a class="wordmark" href="#inicio" aria-label={`${site.band.name}, inicio`}>
     <span class="wordmark__number">{site.band.shortName}</span><span class="wordmark__name">Trío</span>
   </a>
-  <nav aria-label="Navegación principal">
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-navigation">
+    <span class="menu-toggle__label">Menú</span>
+    <span class="menu-toggle__icon" aria-hidden="true"></span>
+  </button>
+  <nav class="site-nav" id="main-navigation" aria-label="Navegación principal">
     {site.navigation.map((item) => <a href={item.href}>{item.label}</a>)}
   </nav>
 </header>
+
+<script>
+  const header = document.querySelector<HTMLElement>('.site-header');
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const navigation = document.querySelector<HTMLElement>('.site-nav');
+
+  const setMenuOpen = (open: boolean) => {
+    header?.classList.toggle('site-header--menu-open', open);
+    toggle?.setAttribute('aria-expanded', String(open));
+    document.body.classList.toggle('menu-open', open);
+  };
+
+  toggle?.addEventListener('click', () => setMenuOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+  navigation?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenuOpen(false)));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') {
+      setMenuOpen(false);
+      toggle.focus();
+    }
+  });
+</script>

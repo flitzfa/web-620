@@ -8,13 +8,21 @@ import SectionHeading from './SectionHeading.astro';
     <SectionHeading id="shows-title" {...site.sections.shows} />
     <div class="show-list">
       {site.shows.map((show) => (
-        <article class:list={['show-card', { 'show-card--upcoming': show.state === 'Próxima' }]}>
+        <article class:list={['show-card', { 'show-card--upcoming': show.state === 'Próxima', 'show-card--has-tickets': Boolean(show.ticketUrl) }]}>
           <p class="show-card__state">{show.state}</p>
           <div>
             <h3>{show.venue}</h3>
             <p>{show.city}</p>
+            {(show.time || show.price) && (
+              <p class="show-card__details">
+                {show.time && <span>{show.time}</span>}
+                {show.time && show.price && <span aria-hidden="true"> · </span>}
+                {show.price && <span>{show.price}</span>}
+              </p>
+            )}
           </div>
           <p class="show-card__date">{show.date}</p>
+          {show.ticketUrl && <a class="show-card__ticket" href={show.ticketUrl} target="_blank" rel="noreferrer">Comprar entradas <span aria-hidden="true">↗</span></a>}
         </article>
       ))}
     </div>

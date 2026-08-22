@@ -9,10 +9,16 @@ import SectionHeading from './SectionHeading.astro';
     <div class="member-grid">
       {site.members.map((member, index) => (
         <article class="member-card">
-          <div class={`member-card__portrait member-card__portrait--${index + 1}`} aria-label={`Placeholder de foto de ${member.name}`} role="img">
-            <span>{member.initials}</span>
-            <small>Foto pendiente</small>
-          </div>
+          {member.photo ? (
+            <div class="member-card__portrait member-card__portrait--photo">
+              <img src={member.photo} alt={`${member.name}, ${member.role.toLowerCase()} de 620 Trío`} loading="lazy" />
+            </div>
+          ) : (
+            <div class={`member-card__portrait member-card__portrait--${index + 1}`} aria-label={`Placeholder de foto de ${member.name}`} role="img">
+              <span>{member.initials}</span>
+              <small>Foto pendiente</small>
+            </div>
+          )}
           <div class="member-card__body">
             <p class="member-card__role">{member.role}</p>
             <h3>{member.name}</h3>

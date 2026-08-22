@@ -12,7 +12,7 @@ import { site } from '../content/site';
     <h1 id="hero-title">{site.hero.title.map((line) => <span>{line}</span>)}</h1>
     <p class="hero__role">{site.band.genre}</p>
     <div class="hero__actions">
-      <a class="button button--primary" href={site.hero.primaryAction.href}>{site.hero.primaryAction.label} <span>↘</span></a>
+      <a class="button button--primary" target="_blank" href={site.hero.primaryAction.href}>{site.hero.primaryAction.label} <span>↘</span></a>
       <a class="button button--ghost" href={site.hero.secondaryAction.href}>{site.hero.secondaryAction.label} <span>↘</span></a>
     </div>
   </div>

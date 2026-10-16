@@ -47,6 +47,7 @@ export type GalleryImage = {
  * To reuse this project for another band, update this file and the assets in /public.
  */
 const shows: readonly Show[] = [
+  { date: '25 de Noviembre', venue: 'Jazzvoyeur', city: 'Recoleta · Buenos Aires', state: 'Próxima' },
   {
     date: '13 de Septiembre',
     venue: 'Tanque Cultural',

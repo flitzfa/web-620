@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="field" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#102a2c" />
+      <stop offset=".55" stop-color="#12494a" />
+      <stop offset="1" stop-color="#087d7b" />
+    </linearGradient>
+    <radialGradient id="ochreGlow" cx="1" cy="0" r=".9">
+      <stop offset="0" stop-color="#c46632" stop-opacity=".5" />
+      <stop offset="1" stop-color="#c46632" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="leftShade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#102a2c" stop-opacity=".38" />
+      <stop offset="1" stop-color="#102a2c" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#field)" />
+  <rect width="1200" height="630" fill="url(#ochreGlow)" />
+  <rect width="1200" height="630" fill="url(#leftShade)" />
+  <path d="M1016 705 C864 570 945 472 1066 352 C1181 237 1056 119 1198 -30" fill="none" stroke="#f6f0e5" stroke-opacity=".13" stroke-width="108" />
+  <path d="M1016 705 C864 570 945 472 1066 352 C1181 237 1056 119 1198 -30" fill="none" stroke="#e69458" stroke-opacity=".8" stroke-width="4" stroke-dasharray="24 27" />
+  <path d="M1053 670 C901 535 982 437 1103 317 C1218 202 1093 84 1235 -65" fill="none" stroke="#f6f0e5" stroke-opacity=".16" stroke-width="2" />
+  <path d="M84 161h54" stroke="#e69458" stroke-width="4" />
+  <text x="158" y="168" fill="#f8f2e8" font-family="Arial, sans-serif" font-size="20" font-weight="600" letter-spacing="3">BUENOS AIRES · TRÍO FUSIÓN</text>
+  <text x="66" y="382" fill="#f8f2e8" font-family="Georgia, serif" font-size="218" font-weight="700" letter-spacing="-18">620</text>
+  <text x="82" y="494" fill="#e69458" font-family="Georgia, serif" font-size="112" font-style="italic" font-weight="700" letter-spacing="-8">Trío</text>
+  <path d="M84 535h72" stroke="#e69458" stroke-width="2" />
+  <text x="174" y="544" fill="#f8f2e8" fill-opacity=".88" font-family="Arial, sans-serif" font-size="19" letter-spacing="1.2">FOLKLORE · JAZZ · ROCK</text>
+</svg>

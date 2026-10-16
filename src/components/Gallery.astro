@@ -11,7 +11,10 @@ import SectionHeading from './SectionHeading.astro';
       {site.gallery.map((image, index) => (
         <figure class:list={['gallery-item', `gallery-item--${image.shape}`]}>
           {image.photo ? (
-            <Image class="gallery-item__image" src={image.photo} alt={image.alt ?? image.label} width={1600} widths={[800, 1600]} sizes="(min-width: 700px) 66vw, 100vw" format="webp" loading="lazy" style={image.focus ? `object-position: ${image.focus};` : ''} />
+            <button class="gallery-item__trigger" type="button" data-gallery-index={index} data-gallery-label={image.label} aria-label={`Ver imagen ampliada: ${image.label}`}>
+              <Image class="gallery-item__image" src={image.photo} alt={image.alt ?? image.label} width={1600} widths={[800, 1600]} sizes="(min-width: 700px) 66vw, 100vw" format="webp" loading="lazy" style={image.focus ? `object-position: ${image.focus};` : ''} />
+              <span class="gallery-item__zoom" aria-hidden="true">⤢</span>
+            </button>
           ) : (
             <div class={`gallery-item__placeholder gallery-item__placeholder--${index + 1}`} role="img" aria-label={`Placeholder: ${image.label}`}>
               <span class="gallery-item__lights" aria-hidden="true"></span>
@@ -24,3 +27,59 @@ import SectionHeading from './SectionHeading.astro';
     </div>
   </div>
 </section>
+
+<dialog class="gallery-lightbox" aria-label="Vista ampliada de la galería">
+  <button class="gallery-lightbox__close" type="button" aria-label="Cerrar imagen ampliada">×</button>
+  <button class="gallery-lightbox__step gallery-lightbox__step--previous" type="button" aria-label="Imagen anterior">‹</button>
+  <figure class="gallery-lightbox__figure">
+    <img class="gallery-lightbox__image" alt="" />
+    <figcaption class="gallery-lightbox__caption"></figcaption>
+  </figure>
+  <p class="gallery-lightbox__count" aria-live="polite"></p>
+  <button class="gallery-lightbox__step gallery-lightbox__step--next" type="button" aria-label="Imagen siguiente">›</button>
+</dialog>
+
+<script>
+  const lightbox = document.querySelector<HTMLDialogElement>('.gallery-lightbox');
+  const lightboxImage = lightbox?.querySelector<HTMLImageElement>('.gallery-lightbox__image');
+  const lightboxCaption = lightbox?.querySelector<HTMLElement>('.gallery-lightbox__caption');
+  const lightboxCount = lightbox?.querySelector<HTMLElement>('.gallery-lightbox__count');
+  const galleryTriggers = [...document.querySelectorAll<HTMLButtonElement>('.gallery-item__trigger')];
+  let activeImageIndex = 0;
+
+  const showImage = (index: number) => {
+    if (!lightboxImage || !lightbox || galleryTriggers.length === 0) return;
+
+    activeImageIndex = (index + galleryTriggers.length) % galleryTriggers.length;
+    const trigger = galleryTriggers[activeImageIndex];
+    const sourceImage = trigger.querySelector('img');
+    if (!sourceImage) return;
+
+    lightboxImage.src = sourceImage.src;
+    lightboxImage.srcset = sourceImage.srcset;
+    lightboxImage.sizes = 'min(92vw, 1600px)';
+    lightboxImage.alt = sourceImage.alt;
+    if (lightboxCaption) lightboxCaption.textContent = trigger.dataset.galleryLabel ?? sourceImage.alt;
+    if (lightboxCount) lightboxCount.textContent = `${String(activeImageIndex + 1).padStart(2, '0')} / ${String(galleryTriggers.length).padStart(2, '0')}`;
+  };
+
+  galleryTriggers.forEach((trigger, index) => {
+    trigger.addEventListener('click', () => {
+      showImage(index);
+      lightbox?.showModal();
+      document.body.classList.add('gallery-lightbox-open');
+    });
+  });
+
+  lightbox?.querySelector('.gallery-lightbox__close')?.addEventListener('click', () => lightbox.close());
+  lightbox?.querySelector('.gallery-lightbox__step--previous')?.addEventListener('click', () => showImage(activeImageIndex - 1));
+  lightbox?.querySelector('.gallery-lightbox__step--next')?.addEventListener('click', () => showImage(activeImageIndex + 1));
+  lightbox?.addEventListener('click', (event) => {
+    if (event.target === lightbox) lightbox.close();
+  });
+  lightbox?.addEventListener('close', () => document.body.classList.remove('gallery-lightbox-open'));
+  lightbox?.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowLeft') showImage(activeImageIndex - 1);
+    if (event.key === 'ArrowRight') showImage(activeImageIndex + 1);
+  });
+</script>

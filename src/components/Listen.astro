@@ -10,13 +10,17 @@ import SectionHeading from './SectionHeading.astro';
       {site.releases.map((release) => (
         <article class="release-card">
           <div class="release-card__video">
-            <iframe
-              src={release.youtubeUrl}
-              title={`${site.band.name} — ${release.title}`}
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
+            {/* Miniatura liviana: el reproductor de YouTube (~1 MB) se carga recién al hacer clic. */}
+            <button
+              class="release-card__play"
+              type="button"
+              data-video-src={`${release.youtubeUrl}?autoplay=1`}
+              data-video-title={`${site.band.name} — ${release.title}`}
+              aria-label={`Reproducir ${release.title}`}
+            >
+              <img src={`https://i.ytimg.com/vi/${release.youtubeUrl.split('/').pop()}/hqdefault.jpg`} alt="" loading="lazy" width="480" height="360" />
+              <span class="release-card__play-icon" aria-hidden="true">▶</span>
+            </button>
           </div>
           <div class="release-card__body">
             <div class="release-card__meta">
@@ -31,3 +35,17 @@ import SectionHeading from './SectionHeading.astro';
     </div>
   </div>
 </section>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.release-card__play').forEach((button) => {
+    button.addEventListener('click', () => {
+      const iframe = document.createElement('iframe');
+      iframe.src = button.dataset.videoSrc ?? '';
+      iframe.title = button.dataset.videoTitle ?? '';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+      button.replaceWith(iframe);
+      iframe.focus();
+    });
+  });
+</script>

@@ -1,14 +1,17 @@
 ---
 import { site } from '../content/site';
 import SectionHeading from './SectionHeading.astro';
+
+const today = new Intl.DateTimeFormat('sv-SE', { timeZone: 'America/Argentina/Buenos_Aires' }).format(new Date());
+const shows = site.shows.map((show) => (show.isoDate ? { ...show, state: show.isoDate >= today ? 'Próxima' : 'Pasada' } : show));
 ---
 
 <section class="section shows" id="fechas" aria-labelledby="shows-title">
   <div class="shell">
     <SectionHeading id="shows-title" {...site.sections.shows} />
     <div class="show-list">
-      {site.shows.map((show) => (
-        <article class:list={['show-card', { 'show-card--upcoming': show.state === 'Próxima', 'show-card--has-tickets': Boolean(show.ticketUrl) }]}>
+      {shows.map((show) => (
+        <article class:list={['show-card', { 'show-card--upcoming': show.state === 'Próxima', 'show-card--has-tickets': Boolean(show.ticketUrl) }]} data-date={show.isoDate}>
           <p class="show-card__state">{show.state}</p>
           <div>
             <h3>{show.venue}</h3>
@@ -28,3 +31,14 @@ import SectionHeading from './SectionHeading.astro';
     </div>
   </div>
 </section>
+
+<script>
+  // El sitio es estático: si la fecha pasó después del último deploy, se marca como pasada en el navegador.
+  const today = new Intl.DateTimeFormat('sv-SE', { timeZone: 'America/Argentina/Buenos_Aires' }).format(new Date());
+  document.querySelectorAll<HTMLElement>('.show-card--upcoming[data-date]').forEach((card) => {
+    if ((card.dataset.date ?? '') >= today) return;
+    card.classList.remove('show-card--upcoming');
+    const state = card.querySelector('.show-card__state');
+    if (state) state.textContent = 'Pasada';
+  });
+</script>

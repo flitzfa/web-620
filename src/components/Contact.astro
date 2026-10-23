@@ -7,7 +7,6 @@ import { site } from '../content/site';
   <div class="shell contact__inner">
     <p class="eyebrow"><span></span>{site.contact.eyebrow}</p>
     <h2>{site.contact.title[0]}<br /><em>{site.contact.title[1]}</em></h2>
-    <!-- TODO: Reemplazar el correo y las redes en src/content/site.ts. -->
     <a class="contact__mail" href={`mailto:${site.band.email}`}>{site.band.email} <span>↗</span></a>
     <div class="contact__bottom">
       <p>© {new Date().getFullYear()} {site.band.name}</p>

@@ -1,9 +1,9 @@
 {
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [{ "type": "host", "value": "web-620.vercel.app" }],
-      "destination": "https://620.com.ar/:path*",
+      "destination": "https://620.com.ar/$1",
       "permanent": true
     }
   ]

@@ -31,7 +31,7 @@ export type Release = {
 export type Member = {
   name: string;
   role: string;
-  detail: string;
+  detail?: string;
   initials: string;
   photo?: ImageMetadata;
 };
@@ -87,9 +87,9 @@ const releases: readonly Release[] = [
 ];
 
 const members: readonly Member[] = [
-  { name: 'Walter Zelaya', role: 'Guitarra', detail: 'Guitarra', initials: 'WZ', photo: walterPhoto },
-  { name: 'Nico Fernández', role: 'Bajo', detail: 'Bajo', initials: 'NF', photo: nicoPhoto },
-  { name: 'Sergio Morán', role: 'Batería', detail: 'Batería', initials: 'SM', photo: sergioPhoto },
+  { name: 'Walter Zelaya', role: 'Guitarra', initials: 'WZ', photo: walterPhoto },
+  { name: 'Nico Fernández', role: 'Bajo', initials: 'NF', photo: nicoPhoto },
+  { name: 'Sergio Morán', role: 'Batería', initials: 'SM', photo: sergioPhoto },
 ];
 
 const gallery: readonly GalleryImage[] = [

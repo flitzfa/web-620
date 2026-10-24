@@ -23,7 +23,7 @@ import SectionHeading from './SectionHeading.astro';
           <div class="member-card__body">
             <p class="member-card__role">{member.role}</p>
             <h3>{member.name}</h3>
-            <p>{member.detail}</p>
+            {member.detail && <p>{member.detail}</p>}
           </div>
         </article>
       ))}
